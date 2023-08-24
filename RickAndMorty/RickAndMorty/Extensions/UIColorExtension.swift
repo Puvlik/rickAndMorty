@@ -1,5 +1,5 @@
 //
-//  UIColor.swift
+//  UIColorExtension.swift
 //  RickAndMorty
 //
 //  Created by Паша Клопот on 21.08.23.
