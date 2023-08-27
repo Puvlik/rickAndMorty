@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E0AFA0ED2A97B883006760D5 /* CharacterMainInformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AFA0EC2A97B883006760D5 /* CharacterMainInformationCollectionViewCell.swift */; };
 		E0AFA0F42A97D990006760D5 /* CharacterInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AFA0F32A97D990006760D5 /* CharacterInfoCollectionViewCell.swift */; };
 		E0AFA0F92A98CC94006760D5 /* CharacterOriginCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AFA0F82A98CC94006760D5 /* CharacterOriginCollectionCell.swift */; };
 		E0CDF1912A93957A00864D36 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CDF1902A93957A00864D36 /* UIViewControllerExtension.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E0AFA0EC2A97B883006760D5 /* CharacterMainInformationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMainInformationCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0AFA0F32A97D990006760D5 /* CharacterInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0AFA0F82A98CC94006760D5 /* CharacterOriginCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterOriginCollectionCell.swift; sourceTree = "<group>"; };
 		E0CDF1902A93957A00864D36 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		E0CDF1992A93B7CF00864D36 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				E0AFA0EC2A97B883006760D5 /* CharacterMainInformationCollectionViewCell.swift */,
 				E0AFA0F32A97D990006760D5 /* CharacterInfoCollectionViewCell.swift */,
 				E0AFA0F82A98CC94006760D5 /* CharacterOriginCollectionCell.swift */,
 			);
