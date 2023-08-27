@@ -23,7 +23,7 @@ private enum Constants {
     static var characterNameTextColor: UIColor { .white }
     
     static var characterNameLabelFontStyle: UIFont { .boldSystemFont(ofSize: 22) }
-    static var characterLifeStatusFontStyle: UIFont { .boldSystemFont(ofSize: 16) }
+    static var characterLifeStatusFontStyle: UIFont { .systemFont(ofSize: 16) }
 }
 
 class CharacterMainInformationCollectionViewCell: UICollectionViewCell {
