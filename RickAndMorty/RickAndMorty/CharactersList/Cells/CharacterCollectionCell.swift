@@ -9,16 +9,16 @@ import UIKit
 import Foundation
 
 private enum Constants {
+    static var cellCornerRadius: CGFloat { 16 }
     static var defaultSidePadding: CGFloat { 10 }
     static var defaultBottomSidePadding: CGFloat { 10 }
-    
     static var characterNameLabelHeight: CGFloat { 22 }
     static var characterImageCornerRadius: CGFloat { 10 }
+    
     static var characterNameLinesNumber: Int { 1 }
+    
     static var characterNameTextColor: UIColor { .white }
     static var characterNameTextFont: UIFont { .boldSystemFont(ofSize: 19) }
-    
-    static var cellCornerRadius: CGFloat { 16 }
 }
 
 class CharacterCollectionCell: UICollectionViewCell {
@@ -39,13 +39,13 @@ class CharacterCollectionCell: UICollectionViewCell {
     }()
     
     private lazy var characterNameLabel: UILabel = {
-        let nameText = UILabel()
-        nameText.translatesAutoresizingMaskIntoConstraints = false
-        nameText.textAlignment = .center
-        nameText.textColor = Constants.characterNameTextColor
-        nameText.numberOfLines = Constants.characterNameLinesNumber
-        nameText.font = Constants.characterNameTextFont
-        return nameText
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.textColor = Constants.characterNameTextColor
+        label.numberOfLines = Constants.characterNameLinesNumber
+        label.font = Constants.characterNameTextFont
+        return label
     }()
     
     override init(frame: CGRect) {
