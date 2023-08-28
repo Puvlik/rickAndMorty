@@ -23,7 +23,7 @@ private enum Constants {
     static var characterNameTextColor: UIColor { .white }
     
     static var characterNameLabelFontStyle: UIFont { .boldSystemFont(ofSize: 22) }
-    static var characterLifeStatusFontStyle: UIFont { .systemFont(ofSize: 16) }
+    static var characterLifeStatusFontStyle: UIFont { .systemFont(ofSize: 16, weight: .medium) }
 }
 
 class CharacterMainInformationCollectionViewCell: UICollectionViewCell {
@@ -62,22 +62,22 @@ class CharacterMainInformationCollectionViewCell: UICollectionViewCell {
     }()
 
     private lazy var characterNameLabel: UILabel = {
-        let nameText = UILabel()
-        nameText.translatesAutoresizingMaskIntoConstraints = false
-        nameText.textAlignment = .center
-        nameText.textColor = Constants.characterNameTextColor
-        nameText.numberOfLines = Constants.labelLinesNumber
-        nameText.font = Constants.characterNameLabelFontStyle
-        return nameText
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.textColor = Constants.characterNameTextColor
+        label.numberOfLines = Constants.labelLinesNumber
+        label.font = Constants.characterNameLabelFontStyle
+        return label
     }()
     
     private lazy var characterLifeStatusLabel: UILabel = {
-        let nameText = UILabel()
-        nameText.translatesAutoresizingMaskIntoConstraints = false
-        nameText.textAlignment = .center
-        nameText.numberOfLines = Constants.labelLinesNumber
-        nameText.font = Constants.characterLifeStatusFontStyle
-        return nameText
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.numberOfLines = Constants.labelLinesNumber
+        label.font = Constants.characterLifeStatusFontStyle
+        return label
     }()
 
     override init(frame: CGRect) {
@@ -89,8 +89,10 @@ class CharacterMainInformationCollectionViewCell: UICollectionViewCell {
 
         characterImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         characterImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        characterImageView.heightAnchor.constraint(equalToConstant: Constants.characterImageViewSideSize).isActive = true
-        characterImageView.widthAnchor.constraint(equalToConstant: Constants.characterImageViewSideSize).isActive = true
+        characterImageView.heightAnchor.constraint(
+            equalToConstant: Constants.characterImageViewSideSize).isActive = true
+        characterImageView.widthAnchor.constraint(
+            equalToConstant: Constants.characterImageViewSideSize).isActive = true
         
         informationStackView.topAnchor.constraint(equalTo: characterImageView.bottomAnchor).isActive = true
         informationStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
