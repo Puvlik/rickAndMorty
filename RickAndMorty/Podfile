@@ -1,0 +1,7 @@
+target 'RickAndMorty' do
+  use_frameworks!
+
+  # Pods for RickAndMorty
+  pod 'Kingfisher'
+  pod 'SwiftLint'
+end

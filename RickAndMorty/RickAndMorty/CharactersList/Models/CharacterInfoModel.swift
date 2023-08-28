@@ -22,7 +22,7 @@ struct CharacterInfoModel: Codable {
     var location: LocationModel
     var image: String
     var episode: [String]
-    
+
     private enum CodingKeys: String, CodingKey {
         case id, name, type, gender, origin, location, image, episode
         case aliveStatus = "status"

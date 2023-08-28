@@ -5,8 +5,8 @@
 //  Created by Паша Клопот on 21.08.23.
 //
 
-import UIKit
 import Foundation
+import UIKit
 
 private enum Constants {
     static var cellCornerRadius: CGFloat { 16 }
@@ -71,7 +71,6 @@ class CharacterCollectionCell: UICollectionViewCell {
                                                     constant: Constants.defaultSidePadding10).isActive = true
         characterImageView.bottomAnchor.constraint(equalTo: characterNameLabel.topAnchor,
                                                    constant: -Constants.defaultSidePadding10).isActive = true
-        
     }
 
     required init?(coder: NSCoder) {
