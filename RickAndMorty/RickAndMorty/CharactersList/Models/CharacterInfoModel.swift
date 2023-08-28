@@ -7,12 +7,10 @@
 
 import Foundation
 
-// MARK: - AllCharactersInfoModel
 struct AllCharactersInfoModel: Codable {
     var results: [CharacterInfoModel]?
 }
 
-// MARK: - Result
 struct CharacterInfoModel: Codable {
     var id: Int
     var name: String
@@ -32,13 +30,11 @@ struct CharacterInfoModel: Codable {
     }
 }
 
-// MARK: - Location
 struct LocationModel: Codable {
     var name: String?
     var url: String?
 }
 
-// MARK: - Welcome
 struct EpisodeModel: Codable {
     let id: Int?
     let name, airDate, episode: String?

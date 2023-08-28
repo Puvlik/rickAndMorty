@@ -10,7 +10,7 @@ import Foundation
 
 private enum Constants {
     static var cellCornerRadius: CGFloat { 16 }
-    static var viewPadding16: CGFloat { 16 }
+    static var defaultPadding16: CGFloat { 16 }
     static var episodeTitleLabelHeight: CGFloat { 22 }
 
     static var episodeTitleTextColor: UIColor { .white }
@@ -31,7 +31,7 @@ class EpisodeCollectionCell: UICollectionViewCell {
         label.font = Constants.episodeTitleFontStyle
         return label
     }()
-    
+
     private lazy var episodeDescriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +41,7 @@ class EpisodeCollectionCell: UICollectionViewCell {
         label.font = Constants.episodeDescriptionFontStyle
         return label
     }()
-    
+
     private lazy var episodeCreationDateLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -51,32 +51,33 @@ class EpisodeCollectionCell: UICollectionViewCell {
         label.font = Constants.episodeDescriptionFontStyle
         return label
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: .zero)
         backgroundColor = UIColor().cellBackgroundColor
         layer.cornerRadius = Constants.cellCornerRadius
-    
+
         addSubview(episodeTitleLabel)
         addSubview(episodeDescriptionLabel)
         addSubview(episodeCreationDateLabel)
-        
-        episodeTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: Constants.viewPadding16).isActive = true
-        episodeTitleLabel.leadingAnchor.constraint(
-            equalTo: leadingAnchor, constant: Constants.viewPadding16).isActive = true
+
+        episodeTitleLabel.topAnchor.constraint(equalTo: topAnchor,
+                                               constant: Constants.defaultPadding16).isActive = true
+        episodeTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                                   constant: Constants.defaultPadding16).isActive = true
         episodeTitleLabel.heightAnchor.constraint(equalToConstant: Constants.episodeTitleLabelHeight).isActive = true
-        
-        episodeDescriptionLabel.topAnchor.constraint(
-            equalTo: episodeTitleLabel.bottomAnchor, constant: Constants.viewPadding16).isActive = true
-        episodeDescriptionLabel.leadingAnchor.constraint(
-            equalTo: leadingAnchor, constant: Constants.viewPadding16).isActive = true
-        episodeDescriptionLabel.bottomAnchor.constraint(
-            equalTo: bottomAnchor, constant: -Constants.viewPadding16).isActive = true
-        
+
+        episodeDescriptionLabel.topAnchor.constraint(equalTo: episodeTitleLabel.bottomAnchor,
+                                                     constant: Constants.defaultPadding16).isActive = true
+        episodeDescriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                                         constant: Constants.defaultPadding16).isActive = true
+        episodeDescriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor,
+                                                        constant: -Constants.defaultPadding16).isActive = true
+
         episodeCreationDateLabel.centerYAnchor.constraint(
             equalTo: episodeDescriptionLabel.centerYAnchor).isActive = true
-        episodeCreationDateLabel.trailingAnchor.constraint(
-            equalTo: trailingAnchor, constant: -Constants.viewPadding16).isActive = true
+        episodeCreationDateLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                                           constant: -Constants.defaultPadding16).isActive = true
     }
 
     required init?(coder: NSCoder) {

@@ -30,11 +30,11 @@ extension UIColor {
             alpha: CGFloat(1.0)
         )
     }
-    
+
     var backgroundColor: UIColor {
         return hexStringToUIColor(hex: "#040C1E")
     }
-    
+
     var cellBackgroundColor: UIColor {
         return hexStringToUIColor(hex: "#262A38")
     }

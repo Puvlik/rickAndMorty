@@ -10,10 +10,10 @@ import Foundation
 
 private enum Constants {
     static var labelLinesNumber: Int { 0 }
-    
+
     static var characterImageViewCornerRadius: CGFloat { 25 }
     static var characterImageViewSideSize: CGFloat { 160 }
-    
+
     static var characterAliveStatus: String { "Alive" }
     static var characterDeadStatus: String { "Dead" }
 
@@ -21,7 +21,7 @@ private enum Constants {
     static var characterDeadStatusTextColor: UIColor { .red }
     static var characterUnknownTextColor: UIColor { .orange }
     static var characterNameTextColor: UIColor { .white }
-    
+
     static var characterNameLabelFontStyle: UIFont { .boldSystemFont(ofSize: 22) }
     static var characterLifeStatusFontStyle: UIFont { .systemFont(ofSize: 16, weight: .medium) }
 }
@@ -32,7 +32,7 @@ class CharacterMainInformationCollectionViewCell: UICollectionViewCell {
             guard let data = data else { return }
             characterNameLabel.text = data.name
             characterLifeStatusLabel.text = data.aliveStatus
-            
+
             switch data.aliveStatus {
             case Constants.characterAliveStatus:
                 characterLifeStatusLabel.textColor = Constants.characterAliveStatusTextColor
@@ -43,7 +43,7 @@ class CharacterMainInformationCollectionViewCell: UICollectionViewCell {
             }
         }
     }
-    
+
     private lazy var informationStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -70,7 +70,7 @@ class CharacterMainInformationCollectionViewCell: UICollectionViewCell {
         label.font = Constants.characterNameLabelFontStyle
         return label
     }()
-    
+
     private lazy var characterLifeStatusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +93,7 @@ class CharacterMainInformationCollectionViewCell: UICollectionViewCell {
             equalToConstant: Constants.characterImageViewSideSize).isActive = true
         characterImageView.widthAnchor.constraint(
             equalToConstant: Constants.characterImageViewSideSize).isActive = true
-        
+
         informationStackView.topAnchor.constraint(equalTo: characterImageView.bottomAnchor).isActive = true
         informationStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         informationStackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
