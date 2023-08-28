@@ -16,8 +16,8 @@ private enum Constants {
     static var genderPlaceholderString: String { "Gender" }
 
     static var cellCornerRadius: CGFloat { 16 }
-    static var verticalPadding: CGFloat { 12 }
-    static var horizontalPadding: CGFloat { 16 }
+    static var defaultPadding12: CGFloat { 12 }
+    static var defaultPadding16: CGFloat { 16 }
 }
 
 class CharacterInfoCollectionViewCell: UICollectionViewCell {
@@ -31,7 +31,7 @@ class CharacterInfoCollectionViewCell: UICollectionViewCell {
                 middleLabelText: Constants.typePlaceholderString,
                 bottomLabelText: Constants.genderPlaceholderString
             )
-            
+
             characterInformationLabelsStackView.setupView(
                 alignment: .right,
                 topLabelText: data.creatureType,
@@ -40,19 +40,19 @@ class CharacterInfoCollectionViewCell: UICollectionViewCell {
             )
         }
     }
-    
+
     private lazy var characterInfoPlaceholdersStackView: ThreeLabelsStackView = {
         let view = ThreeLabelsStackView()
         view.alignment = .leading
         return view
     }()
-    
+
     private lazy var characterInformationLabelsStackView: ThreeLabelsStackView = {
         let view = ThreeLabelsStackView()
         view.alignment = .trailing
         return view
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: .zero)
         backgroundColor = UIColor().cellBackgroundColor
@@ -63,24 +63,25 @@ class CharacterInfoCollectionViewCell: UICollectionViewCell {
 
         characterInfoPlaceholdersStackView.topAnchor.constraint(
             equalTo: topAnchor,
-            constant: Constants.verticalPadding).isActive = true
+            constant: Constants.defaultPadding12).isActive = true
         characterInfoPlaceholdersStackView.leadingAnchor.constraint(
             equalTo: leadingAnchor,
-            constant: Constants.horizontalPadding).isActive = true
+            constant: Constants.defaultPadding16).isActive = true
         characterInfoPlaceholdersStackView.bottomAnchor.constraint(
             equalTo: bottomAnchor,
-            constant: -Constants.verticalPadding).isActive = true
-        
+            constant: -Constants.defaultPadding12).isActive = true
+
         characterInformationLabelsStackView.topAnchor.constraint(
             equalTo: topAnchor,
-            constant: Constants.verticalPadding).isActive = true
+            constant: Constants.defaultPadding12).isActive = true
         characterInformationLabelsStackView.trailingAnchor.constraint(
             equalTo: trailingAnchor,
-            constant: -Constants.horizontalPadding).isActive = true
+            constant: -Constants.defaultPadding16).isActive = true
         characterInformationLabelsStackView.bottomAnchor.constraint(
             equalTo: bottomAnchor,
-            constant: -Constants.verticalPadding).isActive = true
-        characterInformationLabelsStackView.leadingAnchor.constraint(equalTo: characterInfoPlaceholdersStackView.trailingAnchor).isActive = true
+            constant: -Constants.defaultPadding12).isActive = true
+        characterInformationLabelsStackView.leadingAnchor.constraint(
+            equalTo: characterInfoPlaceholdersStackView.trailingAnchor).isActive = true
     }
 
     required init?(coder: NSCoder) {
