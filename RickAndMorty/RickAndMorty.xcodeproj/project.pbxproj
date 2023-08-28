@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E07D41052A93DCAF0091E331 /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07D41042A93DCAF0091E331 /* CharacterDetailsViewController.swift */; };
 		E0AFA0ED2A97B883006760D5 /* CharacterMainInformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AFA0EC2A97B883006760D5 /* CharacterMainInformationCollectionViewCell.swift */; };
 		E0AFA0F42A97D990006760D5 /* CharacterInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AFA0F32A97D990006760D5 /* CharacterInfoCollectionViewCell.swift */; };
 		E0AFA0F92A98CC94006760D5 /* CharacterOriginCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AFA0F82A98CC94006760D5 /* CharacterOriginCollectionCell.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E07D41042A93DCAF0091E331 /* CharacterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewController.swift; sourceTree = "<group>"; };
 		E0AFA0EC2A97B883006760D5 /* CharacterMainInformationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMainInformationCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0AFA0F32A97D990006760D5 /* CharacterInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0AFA0F82A98CC94006760D5 /* CharacterOriginCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterOriginCollectionCell.swift; sourceTree = "<group>"; };
@@ -130,7 +132,7 @@
 		E0CDF19C2A93B7EF00864D36 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E0E5CEAE2A9384180002CF05 /* AllCharactersViewController.swift */,
+				E07D41042A93DCAF0091E331 /* CharacterDetailsViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -269,6 +271,7 @@
 				E0CDF1912A93957A00864D36 /* UIViewControllerExtension.swift in Sources */,
 				E0AFA0ED2A97B883006760D5 /* CharacterMainInformationCollectionViewCell.swift in Sources */,
 				E0CDF1962A93B2E900864D36 /* CharacterInfoModel.swift in Sources */,
+				E07D41052A93DCAF0091E331 /* CharacterDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
