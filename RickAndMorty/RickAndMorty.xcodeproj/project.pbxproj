@@ -10,6 +10,7 @@
 		E0AFA0ED2A97B883006760D5 /* CharacterMainInformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AFA0EC2A97B883006760D5 /* CharacterMainInformationCollectionViewCell.swift */; };
 		E0AFA0F42A97D990006760D5 /* CharacterInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AFA0F32A97D990006760D5 /* CharacterInfoCollectionViewCell.swift */; };
 		E0AFA0F92A98CC94006760D5 /* CharacterOriginCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AFA0F82A98CC94006760D5 /* CharacterOriginCollectionCell.swift */; };
+		E0CBE7D52A9A604C006B4C7B /* ThreeLabelsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBE7D42A9A604C006B4C7B /* ThreeLabelsStackView.swift */; };
 		E0CDF1912A93957A00864D36 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CDF1902A93957A00864D36 /* UIViewControllerExtension.swift */; };
 		E0CDF1932A939A6800864D36 /* CharacterCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CDF1922A939A6800864D36 /* CharacterCollectionCell.swift */; };
 		E0CDF1962A93B2E900864D36 /* CharacterInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CDF1952A93B2E900864D36 /* CharacterInfoModel.swift */; };
@@ -26,6 +27,7 @@
 		E0AFA0EC2A97B883006760D5 /* CharacterMainInformationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMainInformationCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0AFA0F32A97D990006760D5 /* CharacterInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0AFA0F82A98CC94006760D5 /* CharacterOriginCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterOriginCollectionCell.swift; sourceTree = "<group>"; };
+		E0CBE7D42A9A604C006B4C7B /* ThreeLabelsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeLabelsStackView.swift; sourceTree = "<group>"; };
 		E0CDF1902A93957A00864D36 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		E0CDF1922A939A6800864D36 /* CharacterCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionCell.swift; sourceTree = "<group>"; };
 		E0CDF1952A93B2E900864D36 /* CharacterInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInfoModel.swift; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 				E0CDF1922A939A6800864D36 /* CharacterCollectionCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		E0CBE7D12A9A5FE2006B4C7B /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				E0CBE7D42A9A604C006B4C7B /* ThreeLabelsStackView.swift */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		E0CDF1992A93B7CF00864D36 /* Cells */ = {
@@ -157,6 +167,7 @@
 				E0CDF19C2A93B7EF00864D36 /* View */,
 				E0CDF1992A93B7CF00864D36 /* Cells */,
 				E0E5CEBE2A938BA60002CF05 /* Extensions */,
+				E0CBE7D12A9A5FE2006B4C7B /* CustomViews */,
 				E0CDF19D2A93B7FE00864D36 /* SupportingFiles */,
 				E0E5CEB82A9384190002CF05 /* Info.plist */,
 			);
@@ -247,6 +258,7 @@
 				E0E5CEAF2A9384180002CF05 /* AllCharactersViewController.swift in Sources */,
 				E0CDF1932A939A6800864D36 /* CharacterCollectionCell.swift in Sources */,
 				E0E5CEC02A938BB40002CF05 /* UIColorExtension.swift in Sources */,
+				E0CBE7D52A9A604C006B4C7B /* ThreeLabelsStackView.swift in Sources */,
 				E0E5CEAB2A9384180002CF05 /* AppDelegate.swift in Sources */,
 				E0AFA0F92A98CC94006760D5 /* CharacterOriginCollectionCell.swift in Sources */,
 				E0E5CEAD2A9384180002CF05 /* SceneDelegate.swift in Sources */,
