@@ -5,8 +5,8 @@
 //  Created by Паша Клопот on 26.08.23.
 //
 
-import UIKit
 import Foundation
+import UIKit
 
 enum ThreeLabelsAligment {
     case left
@@ -53,7 +53,7 @@ class ThreeLabelsStackView: UIStackView {
         addArrangedSubview(typePlaceholderLabel)
         addArrangedSubview(genderPlaceholderLabel)
     }
-    
+
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -61,8 +61,7 @@ class ThreeLabelsStackView: UIStackView {
     func setupView(alignment: ThreeLabelsAligment,
                    topLabelText: String,
                    middleLabelText: String,
-                   bottomLabelText: String)
-    {
+                   bottomLabelText: String) {
         let labelsTextAlignment: NSTextAlignment = alignment == .left ? .left : .right
         let labelsTextColor: UIColor = alignment ==
             .left ? Constants.placeholderDefaultTextColor : Constants.infoDefaultTextColor

@@ -5,8 +5,8 @@
 //  Created by Паша Клопот on 21.08.23.
 //
 
-import UIKit
 import Foundation
+import UIKit
 
 private enum Constants {
     static var emptyCollection: Int { 0 }
@@ -25,7 +25,7 @@ private enum Constants {
 
 class AllCharactersViewController: UIViewController {
     private lazy var charactersCollectionView: UICollectionView = {
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = Constants.collectionViewItemSpacing
         layout.minimumLineSpacing = Constants.collectionViewLineSpacing
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 2 - Constants.defaultPadding16,
@@ -63,13 +63,13 @@ class AllCharactersViewController: UIViewController {
 
         setupCollectionView()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             self?.charactersCollectionView.reloadData()
         }
     }
-    
+
     private func setupCollectionView() {
         charactersCollectionView.dataSource = self
         charactersCollectionView.delegate = self
@@ -103,7 +103,8 @@ extension AllCharactersViewController: UICollectionViewDataSource {
         // return viewModel.charactersListArray?.results?.count ?? Constants.emptyCollection
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: Constants.collectionViewCellIdentifier,
             for: indexPath

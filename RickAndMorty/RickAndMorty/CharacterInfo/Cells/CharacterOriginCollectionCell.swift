@@ -5,8 +5,8 @@
 //  Created by Паша Клопот on 25.08.23.
 //
 
-import UIKit
 import Foundation
+import UIKit
 
 private enum Constants {
     static var cellCornerRadius: CGFloat { 16 }
@@ -23,7 +23,7 @@ private enum Constants {
     static var placeholderDefaultTextColor: UIColor { UIColor().hexStringToUIColor(hex: "#191C2A") }
     static var planetNameTextColor: UIColor { .white }
     static var planetTypeTextColor: UIColor { .green }
-    
+
     static var planetNameLabelFontStyle: UIFont { .boldSystemFont(ofSize: 17) }
     static var planetTypeFontStyle: UIFont { .systemFont(ofSize: 13, weight: .medium) }
 }

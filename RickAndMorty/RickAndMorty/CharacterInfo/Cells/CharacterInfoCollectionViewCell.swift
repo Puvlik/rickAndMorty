@@ -5,8 +5,8 @@
 //  Created by Паша Клопот on 24.08.23.
 //
 
-import UIKit
 import Foundation
+import UIKit
 
 private enum Constants {
     static var emptyString: String { "" }

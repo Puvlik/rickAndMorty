@@ -5,8 +5,8 @@
 //  Created by Паша Клопот on 21.08.23.
 //
 
-import UIKit
 import Foundation
+import UIKit
 
 private enum Constants {
     static var collectionViewItemSpacing: CGFloat { 10 }
@@ -24,7 +24,7 @@ private enum Constants {
 
 class CharacterDetailsViewController: UIViewController {
     private lazy var characterDetailInfoCollectionView: UICollectionView = {
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = Constants.collectionViewItemSpacing
         layout.minimumLineSpacing = Constants.collectionViewLineSpacing
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width - Constants.collectionViewWidthPadding,
@@ -59,7 +59,7 @@ class CharacterDetailsViewController: UIViewController {
             self?.characterDetailInfoCollectionView.reloadData()
         }
     }
-    
+
     private func registedCollectionViewCells() {
         characterDetailInfoCollectionView.register(CharacterMainInformationCollectionViewCell.self,
                             forCellWithReuseIdentifier: Constants.collectionViewMainCellIdentifier)
@@ -101,7 +101,8 @@ extension CharacterDetailsViewController: UICollectionViewDataSource {
         return 4
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.row {
         case 0:
             guard let cell = collectionView.dequeueReusableCell(
@@ -138,14 +139,20 @@ extension CharacterDetailsViewController: UICollectionViewDataSource {
 }
 
 extension CharacterDetailsViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         var cellHeight = 0.0
         switch indexPath.row {
-        case 0: cellHeight = Constants.collectionViewHeightPadding
-        case 1: cellHeight = 124
-        case 2: cellHeight = 80
-        default: cellHeight = 86
+        case 0:
+            cellHeight = Constants.collectionViewHeightPadding
+        case 1:
+            cellHeight = 124
+        case 2:
+            cellHeight = 80
+        default:
+            cellHeight = 86
         }
 
         return CGSize(
