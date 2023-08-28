@@ -10,13 +10,12 @@ import Foundation
 
 private enum Constants {
     static var cellCornerRadius: CGFloat { 16 }
-    static var defaultSidePadding: CGFloat { 10 }
-    static var defaultBottomSidePadding: CGFloat { 10 }
-    static var characterNameLabelHeight: CGFloat { 22 }
     static var characterImageCornerRadius: CGFloat { 10 }
-    
-    static var characterNameLinesNumber: Int { 1 }
-    
+    static var defaultSidePadding10: CGFloat { 10 }
+    static var characterNameLabelHeight: CGFloat { 22 }
+
+    static var characterNameNumberOfLines: Int { 1 }
+
     static var characterNameTextColor: UIColor { .white }
     static var characterNameTextFont: UIFont { .boldSystemFont(ofSize: 19) }
 }
@@ -28,7 +27,7 @@ class CharacterCollectionCell: UICollectionViewCell {
             characterNameLabel.text = data.name
         }
     }
-    
+
     lazy var characterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,39 +36,40 @@ class CharacterCollectionCell: UICollectionViewCell {
         imageView.layer.cornerRadius = Constants.characterImageCornerRadius
         return imageView
     }()
-    
+
     private lazy var characterNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.textColor = Constants.characterNameTextColor
-        label.numberOfLines = Constants.characterNameLinesNumber
+        label.numberOfLines = Constants.characterNameNumberOfLines
         label.font = Constants.characterNameTextFont
         return label
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: .zero)
         backgroundColor = UIColor().cellBackgroundColor
         layer.cornerRadius = Constants.cellCornerRadius
         addSubview(characterImageView)
         addSubview(characterNameLabel)
-        
+
         characterNameLabel.bottomAnchor.constraint(equalTo: bottomAnchor,
-                                                   constant: -Constants.defaultBottomSidePadding).isActive = true
+                                                   constant: -Constants.defaultSidePadding10).isActive = true
         characterNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
-                                                     constant: -Constants.defaultSidePadding).isActive = true
+                                                     constant: -Constants.defaultSidePadding10).isActive = true
         characterNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
-                                                    constant: Constants.defaultSidePadding).isActive = true
+                                                    constant: Constants.defaultSidePadding10).isActive = true
         characterNameLabel.heightAnchor.constraint(equalToConstant: Constants.characterNameLabelHeight).isActive = true
-        
-        characterImageView.topAnchor.constraint(equalTo: topAnchor, constant: Constants.defaultSidePadding).isActive = true
+
+        characterImageView.topAnchor.constraint(equalTo: topAnchor,
+                                                constant: Constants.defaultSidePadding10).isActive = true
         characterImageView.trailingAnchor.constraint(equalTo: trailingAnchor,
-                                                     constant: -Constants.defaultSidePadding).isActive = true
+                                                     constant: -Constants.defaultSidePadding10).isActive = true
         characterImageView.leadingAnchor.constraint(equalTo: leadingAnchor,
-                                                    constant: Constants.defaultSidePadding).isActive = true
+                                                    constant: Constants.defaultSidePadding10).isActive = true
         characterImageView.bottomAnchor.constraint(equalTo: characterNameLabel.topAnchor,
-                                                   constant: -Constants.defaultBottomSidePadding).isActive = true
+                                                   constant: -Constants.defaultSidePadding10).isActive = true
         
     }
 
