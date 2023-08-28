@@ -17,6 +17,7 @@ private enum Constants {
     static var characterNameNumberOfLines: Int { 1 }
 
     static var characterNameTextColor: UIColor { .white }
+
     static var characterNameTextFont: UIFont { .boldSystemFont(ofSize: 19) }
 }
 
