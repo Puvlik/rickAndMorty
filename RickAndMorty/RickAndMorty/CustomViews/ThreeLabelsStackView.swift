@@ -27,28 +27,28 @@ class ThreeLabelsStackView: UIStackView {
         text.font = Constants.labelsDefaultFontStyle
         return text
     }()
-    
+
     private var typePlaceholderLabel: UILabel = {
         let text = UILabel()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.font = Constants.labelsDefaultFontStyle
         return text
     }()
-    
+
     private var genderPlaceholderLabel: UILabel = {
         let text = UILabel()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.font = Constants.labelsDefaultFontStyle
         return text
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         axis = .vertical
         distribution = .equalCentering
         spacing = Constants.viewImensSpacing
-        
+
         addArrangedSubview(speciesPlaceholderLabel)
         addArrangedSubview(typePlaceholderLabel)
         addArrangedSubview(genderPlaceholderLabel)
@@ -57,7 +57,7 @@ class ThreeLabelsStackView: UIStackView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func setupView(alignment: ThreeLabelsAligment,
                    topLabelText: String,
                    middleLabelText: String,
@@ -69,11 +69,11 @@ class ThreeLabelsStackView: UIStackView {
         speciesPlaceholderLabel.text = topLabelText
         speciesPlaceholderLabel.textAlignment = labelsTextAlignment
         speciesPlaceholderLabel.textColor = labelsTextColor
-        
+
         typePlaceholderLabel.text = middleLabelText
         typePlaceholderLabel.textAlignment = labelsTextAlignment
         typePlaceholderLabel.textColor = labelsTextColor
-        
+
         genderPlaceholderLabel.text = bottomLabelText
         genderPlaceholderLabel.textAlignment = labelsTextAlignment
         genderPlaceholderLabel.textColor = labelsTextColor
