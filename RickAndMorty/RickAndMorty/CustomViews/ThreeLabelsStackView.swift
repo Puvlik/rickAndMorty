@@ -14,7 +14,8 @@ enum ThreeLabelsAligment {
 }
 
 private enum Constants {
-    static var viewImensSpacing: CGFloat { 5 }
+    static var labelTextNumberOfLines: Int { 0 }
+    static var viewItemsSpacing: CGFloat { 5 }
     static var labelsDefaultFontStyle: UIFont { .boldSystemFont(ofSize: 16) }
     static var placeholderDefaultTextColor: UIColor { .gray }
     static var infoDefaultTextColor: UIColor { .white }
@@ -25,6 +26,7 @@ class ThreeLabelsStackView: UIStackView {
         let text = UILabel()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.font = Constants.labelsDefaultFontStyle
+        text.numberOfLines = Constants.labelTextNumberOfLines
         return text
     }()
 
@@ -32,6 +34,7 @@ class ThreeLabelsStackView: UIStackView {
         let text = UILabel()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.font = Constants.labelsDefaultFontStyle
+        text.numberOfLines = Constants.labelTextNumberOfLines
         return text
     }()
 
@@ -39,6 +42,7 @@ class ThreeLabelsStackView: UIStackView {
         let text = UILabel()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.font = Constants.labelsDefaultFontStyle
+        text.numberOfLines = Constants.labelTextNumberOfLines
         return text
     }()
 
@@ -47,7 +51,7 @@ class ThreeLabelsStackView: UIStackView {
         translatesAutoresizingMaskIntoConstraints = false
         axis = .vertical
         distribution = .equalCentering
-        spacing = Constants.viewImensSpacing
+        spacing = Constants.viewItemsSpacing
 
         addArrangedSubview(speciesPlaceholderLabel)
         addArrangedSubview(typePlaceholderLabel)
