@@ -21,7 +21,7 @@ private enum Constants {
 }
 
 class CharacterInfoCollectionViewCell: UICollectionViewCell {
-    var data: CharacterInfoModel? {
+    var data: CharacterFullInfoModel? {
         didSet {
             guard let data = data else { return }
             let characterTypeString = data.type == Constants.emptyString ? Constants.characterNoneTypeString : data.type

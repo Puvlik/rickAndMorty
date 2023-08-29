@@ -35,10 +35,11 @@ class CharacterDetailsViewController: UIViewController {
         return collection
     }()
 
-    private var character: CharacterInfoModel
-    private let viewModel: CharacterViewModel
+    private let viewModel: DetailCharacterInfoViewModel
+    private let character: CharacterInfoModel
+    private var fullCharacterInfoModel: CharacterFullInfoModel?
 
-    init(character: CharacterInfoModel, viewModel: CharacterViewModel) {
+    init(character: CharacterInfoModel, viewModel: DetailCharacterInfoViewModel) {
         self.character = character
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -54,8 +55,27 @@ class CharacterDetailsViewController: UIViewController {
         setupCollectionView()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+    private func fetchRequiredData() {
+        let group = DispatchGroup()
+
+        group.enter()
+        viewModel.parseAllCharacterEpisodes(episodes: character.episode) {
+            group.leave()
+        }
+
+        group.enter()
+        viewModel.parseCharacterOrigin(originString: character.origin.url ?? "") {
+            group.leave()
+        }
+
+        group.notify(queue: .main) { [weak self] in
+            guard let character = self?.character,
+                  let origin = self?.viewModel.characterOriginModel,
+                  let episodes = self?.viewModel.characterEpisodesArray else { return }
+            self?.fullCharacterInfoModel = CharacterFullInfoModel(
+                model: character,
+                origin: origin,
+                episodes: episodes)
             self?.characterDetailInfoCollectionView.reloadData()
         }
     }
@@ -109,9 +129,10 @@ extension CharacterDetailsViewController: UICollectionViewDataSource {
                 withReuseIdentifier: Constants.collectionViewMainCellIdentifier,
                 for: indexPath
             ) as? CharacterMainInformationCollectionViewCell else { return UICollectionViewCell() }
-            cell.data = character
-            viewModel.getImageFromURL(url: character.image) { image in
-                cell.characterImageView.image = image
+            cell.data = fullCharacterInfoModel
+            if let imageURL = URL(string: fullCharacterInfoModel?.image ?? "") {
+                let characterImage = KF.ImageResource(downloadURL: imageURL)
+                cell.characterImageView.kf.setImage(with: characterImage)
             }
             return cell
         case 1:
@@ -119,20 +140,22 @@ extension CharacterDetailsViewController: UICollectionViewDataSource {
                 withReuseIdentifier: Constants.collectionViewInfoCellIdentifier,
                 for: indexPath
             ) as? CharacterInfoCollectionViewCell else { return UICollectionViewCell() }
-            cell.data = character
+            cell.data = fullCharacterInfoModel
             return cell
         case 2:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: Constants.collectionViewOriginCellIdentifier,
                 for: indexPath
             ) as? CharacterOriginCollectionCell else { return UICollectionViewCell() }
-            cell.data = character
+            cell.data = fullCharacterInfoModel?.origin
             return cell
         default:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: Constants.collectionViewEpisodeCellIdentifier,
                 for: indexPath
             ) as? EpisodeCollectionCell else { return UICollectionViewCell() }
+
+            cell.data = fullCharacterInfoModel?.episode[indexPath.row]
             return cell
         }
     }

@@ -27,7 +27,7 @@ private enum Constants {
 }
 
 class CharacterMainInformationCollectionViewCell: UICollectionViewCell {
-    var data: CharacterInfoModel? {
+    var data: CharacterFullInfoModel? {
         didSet {
             guard let data = data else { return }
             characterNameLabel.text = data.name
