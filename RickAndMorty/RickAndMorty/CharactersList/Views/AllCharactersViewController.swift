@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Kingfisher
 import UIKit
 
 private enum Constants {
@@ -112,8 +113,9 @@ extension AllCharactersViewController: UICollectionViewDataSource {
 
         if let currentCharacter = viewModel.charactersListArray?.results?[indexPath.row] {
             cell.data = currentCharacter
-            viewModel.getImageFromURL(url: currentCharacter.image) { image in
-                cell.characterImageView.image = image
+            if let imageURL = URL(string: currentCharacter.image) {
+                let characterImage = KF.ImageResource(downloadURL: imageURL)
+                cell.characterImageView.kf.setImage(with: characterImage)
             }
         }
         return cell
