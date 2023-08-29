@@ -10,10 +10,18 @@ import Kingfisher
 import UIKit
 
 private enum Constants {
+    static var collectionViewNumberOfSections: Int { 1 }
+    static var defaultNumberOfCells: Int { 6 }
+
+    static var collectionViewSectionTitleCellHeight: CGFloat { 35 }
+    static var collectionViewMainCellHeight: CGFloat { 220 }
+    static var collectionViewInfoCellHeight: CGFloat { 124 }
+    static var collectionViewOriginCellHeight: CGFloat { 80 }
+    static var collectionViewEpisodeCellHeight: CGFloat { 86 }
+
     static var collectionViewItemSpacing: CGFloat { 10 }
     static var collectionViewLineSpacing: CGFloat { 10 }
     static var collectionViewWidthPadding: CGFloat { 40 }
-    static var collectionViewHeightPadding: CGFloat { 220 }
     static var defaultPadding8: CGFloat { 8 }
 
     static var collectionViewDefaultColor: UIColor { .clear }
@@ -21,6 +29,7 @@ private enum Constants {
     static var collectionViewInfoCellIdentifier: String { "CharacterInfoCollectionViewCell" }
     static var collectionViewOriginCellIdentifier: String { "CharacterOriginCollectionCell" }
     static var collectionViewEpisodeCellIdentifier: String { "EpisodeCollectionCell" }
+    static var collectionViewSectionTitleCellIdentifier: String { "SectionTitleCollectionViewCell" }
 }
 
 class CharacterDetailsViewController: UIViewController {
@@ -28,8 +37,6 @@ class CharacterDetailsViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = Constants.collectionViewItemSpacing
         layout.minimumLineSpacing = Constants.collectionViewLineSpacing
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width - Constants.collectionViewWidthPadding,
-                                 height: Constants.collectionViewHeightPadding)
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.backgroundColor = Constants.collectionViewDefaultColor
         collection.translatesAutoresizingMaskIntoConstraints = false
@@ -77,7 +84,7 @@ class CharacterDetailsViewController: UIViewController {
             self?.fullCharacterInfoModel = CharacterFullInfoModel(
                 model: character,
                 origin: origin,
-                episodes: episodes)
+                episodes: episodes.sorted { $0.id < $1.id })
             self?.characterDetailInfoCollectionView.reloadData()
         }
     }
@@ -91,6 +98,8 @@ class CharacterDetailsViewController: UIViewController {
                             forCellWithReuseIdentifier: Constants.collectionViewOriginCellIdentifier)
         characterDetailInfoCollectionView.register(EpisodeCollectionCell.self,
                             forCellWithReuseIdentifier: Constants.collectionViewEpisodeCellIdentifier)
+        characterDetailInfoCollectionView.register(SectionTitleCollectionViewCell.self,
+                            forCellWithReuseIdentifier: Constants.collectionViewSectionTitleCellIdentifier)
     }
 
     private func setupCollectionView() {
@@ -108,24 +117,37 @@ class CharacterDetailsViewController: UIViewController {
                                                    constant: -Constants.defaultPadding8).isActive = true
         characterDetailInfoCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
+
+    private func setupSectionCollectionViewCell(indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = characterDetailInfoCollectionView.dequeueReusableCell(
+            withReuseIdentifier: Constants.collectionViewSectionTitleCellIdentifier,
+            for: indexPath
+        ) as? SectionTitleCollectionViewCell else { return UICollectionViewCell() }
+        switch indexPath.row {
+        case 1:
+            cell.title = .info
+        case 3:
+            cell.title = .origin
+        default:
+            cell.title = .episodes
+        }
+        return cell
+    }
 }
 
-extension CharacterDetailsViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {}
-}
+extension CharacterDetailsViewController: UICollectionViewDelegate {}
 
 extension CharacterDetailsViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 4
+        return Constants.collectionViewNumberOfSections
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0, 1, 2:
-            return 0
-        default:
-            return fullCharacterInfoModel?.episode.count ?? 0
+        guard let episodesCount = fullCharacterInfoModel?.episode.count else {
+            return Constants.defaultNumberOfCells
         }
+
+        return episodesCount + Constants.defaultNumberOfCells
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -142,14 +164,16 @@ extension CharacterDetailsViewController: UICollectionViewDataSource {
                 cell.characterImageView.kf.setImage(with: characterImage)
             }
             return cell
-        case 1:
+        case 1, 3, 5:
+            return setupSectionCollectionViewCell(indexPath: indexPath)
+        case 2:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: Constants.collectionViewInfoCellIdentifier,
                 for: indexPath
             ) as? CharacterInfoCollectionViewCell else { return UICollectionViewCell() }
             cell.data = fullCharacterInfoModel
             return cell
-        case 2:
+        case 4:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: Constants.collectionViewOriginCellIdentifier,
                 for: indexPath
@@ -161,8 +185,7 @@ extension CharacterDetailsViewController: UICollectionViewDataSource {
                 withReuseIdentifier: Constants.collectionViewEpisodeCellIdentifier,
                 for: indexPath
             ) as? EpisodeCollectionCell else { return UICollectionViewCell() }
-
-            cell.data = fullCharacterInfoModel?.episode[indexPath.row]
+            cell.data = fullCharacterInfoModel?.episode[indexPath.row - Constants.defaultNumberOfCells]
             return cell
         }
     }
@@ -175,14 +198,16 @@ extension CharacterDetailsViewController: UICollectionViewDelegateFlowLayout {
 
         var cellHeight = 0.0
         switch indexPath.row {
+        case 1, 3, 5:
+            cellHeight = Constants.collectionViewSectionTitleCellHeight
         case 0:
-            cellHeight = Constants.collectionViewHeightPadding
-        case 1:
-            cellHeight = 124
+            cellHeight = Constants.collectionViewMainCellHeight
         case 2:
-            cellHeight = 80
+            cellHeight = Constants.collectionViewInfoCellHeight
+        case 4:
+            cellHeight = Constants.collectionViewOriginCellHeight
         default:
-            cellHeight = 86
+            cellHeight = Constants.collectionViewEpisodeCellHeight
         }
 
         return CGSize(
