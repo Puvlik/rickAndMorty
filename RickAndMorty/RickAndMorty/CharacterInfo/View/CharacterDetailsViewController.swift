@@ -52,6 +52,7 @@ class CharacterDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchRequiredData()
         view.backgroundColor = UIColor().backgroundColor
         setupCollectionView()
     }
@@ -115,11 +116,16 @@ extension CharacterDetailsViewController: UICollectionViewDelegate {
 
 extension CharacterDetailsViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 4
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        switch section {
+        case 0, 1, 2:
+            return 0
+        default:
+            return fullCharacterInfoModel?.episode.count ?? 0
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView,

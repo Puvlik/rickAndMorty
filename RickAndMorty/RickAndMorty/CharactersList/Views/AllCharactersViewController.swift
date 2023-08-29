@@ -67,12 +67,6 @@ class AllCharactersViewController: UIViewController {
         setupCollectionView()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-            self?.charactersCollectionView.reloadData()
-        }
-    }
-
     private func setupCollectionView() {
         charactersCollectionView.dataSource = self
         charactersCollectionView.delegate = self
@@ -92,18 +86,14 @@ extension AllCharactersViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let selectedCharacter = viewModel.charactersListArray?.results?[indexPath.row] else { return }
         let characterDetailedInfoViewController = CharacterDetailsViewController(
-            character: selectedCharacter,
-            viewModel: CharacterViewModel()
-        )
-
+            character: selectedCharacter, viewModel: DetailCharacterInfoViewModel())
         self.present(characterDetailedInfoViewController, animated: true)
     }
 }
 
 extension AllCharactersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-        // return viewModel.charactersListArray?.results?.count ?? Constants.emptyCollection
+        return viewModel.charactersListArray?.results?.count ?? Constants.emptyCollection
     }
 
     func collectionView(_ collectionView: UICollectionView,
