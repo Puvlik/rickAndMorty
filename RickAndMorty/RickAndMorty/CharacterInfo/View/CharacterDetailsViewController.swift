@@ -110,7 +110,7 @@ class CharacterDetailsViewController: UIViewController {
         view.addSubview(characterDetailInfoCollectionView)
 
         characterDetailInfoCollectionView.topAnchor.constraint(equalTo: view.topAnchor,
-                                                               constant: topBarHeight).isActive = true
+                                                               constant: Constants.defaultPadding8).isActive = true
         characterDetailInfoCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
                                                   constant: Constants.defaultPadding8).isActive = true
         characterDetailInfoCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
