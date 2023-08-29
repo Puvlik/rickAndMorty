@@ -12,31 +12,15 @@ class CharactersViewModel {
     private let urlString = "https://rickandmortyapi.com/api/character"
     var charactersListArray: AllCharactersInfoModel?
 
-    func loadAllCharactersInfo() {
+    func loadAllCharactersInfo(completion: @escaping () -> ()) {
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
             DispatchQueue.main.async {
                 guard let data = data, let self = self else { return }
-
                 do {
                     let info = try JSONDecoder().decode(AllCharactersInfoModel.self, from: data)
                     self.charactersListArray = info
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-        }.resume()
-    }
-
-    func getImageFromURL(url: String, completion: @escaping (UIImage) -> Void) {
-        guard let imageURL = URL(string: url) else { return }
-
-        URLSession.shared.dataTask(with: imageURL) { _, _, error in
-            DispatchQueue.main.async {
-                do {
-                    let imageData = try Data(contentsOf: imageURL, options: [])
-                    let characterImage = UIImage(data: imageData) ?? UIImage()
-                    completion(characterImage)
+                    completion()
                 } catch {
                     print(error.localizedDescription)
                 }
