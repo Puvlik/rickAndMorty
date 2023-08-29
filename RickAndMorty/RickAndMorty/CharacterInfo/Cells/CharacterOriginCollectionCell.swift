@@ -18,7 +18,6 @@ private enum Constants {
     static var defaultSizeValue22: CGFloat { 22 }
 
     static var planetImageName: String { "planet" }
-    static var planetTypePlaceholderText: String { "Planet" }
 
     static var placeholderDefaultTextColor: UIColor { UIColor().hexStringToUIColor(hex: "#191C2A") }
     static var planetNameTextColor: UIColor { .white }
@@ -65,7 +64,6 @@ class CharacterOriginCollectionCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.text = Constants.planetTypePlaceholderText
         label.textColor = Constants.planetTypeTextColor
         label.font = Constants.planetTypeFontStyle
         return label

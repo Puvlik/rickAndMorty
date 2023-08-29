@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Kingfisher
 import UIKit
 
 private enum Constants {
@@ -52,7 +53,9 @@ class AllCharactersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async { [weak self] in
-            self?.viewModel.loadAllCharactersInfo()
+            self?.viewModel.loadAllCharactersInfo(completion: {
+                self?.charactersCollectionView.reloadData()
+            })
         }
         view.backgroundColor = UIColor().backgroundColor
 
@@ -62,12 +65,6 @@ class AllCharactersViewController: UIViewController {
         navigationItem.title = Constants.navigationItemText
 
         setupCollectionView()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-            self?.charactersCollectionView.reloadData()
-        }
     }
 
     private func setupCollectionView() {
@@ -89,18 +86,14 @@ extension AllCharactersViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let selectedCharacter = viewModel.charactersListArray?.results?[indexPath.row] else { return }
         let characterDetailedInfoViewController = CharacterDetailsViewController(
-            character: selectedCharacter,
-            viewModel: CharacterViewModel()
-        )
-
+            character: selectedCharacter, viewModel: DetailCharacterInfoViewModel())
         self.present(characterDetailedInfoViewController, animated: true)
     }
 }
 
 extension AllCharactersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-        // return viewModel.charactersListArray?.results?.count ?? Constants.emptyCollection
+        return viewModel.charactersListArray?.results?.count ?? Constants.emptyCollection
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -112,8 +105,9 @@ extension AllCharactersViewController: UICollectionViewDataSource {
 
         if let currentCharacter = viewModel.charactersListArray?.results?[indexPath.row] {
             cell.data = currentCharacter
-            viewModel.getImageFromURL(url: currentCharacter.image) { image in
-                cell.characterImageView.image = image
+            if let imageURL = URL(string: currentCharacter.image) {
+                let characterImage = KF.ImageResource(downloadURL: imageURL)
+                cell.characterImageView.kf.setImage(with: characterImage)
             }
         }
         return cell

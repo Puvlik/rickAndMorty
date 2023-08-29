@@ -35,7 +35,6 @@ class EpisodeCollectionCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.text = "Lawnmower Dog"
         label.textColor = Constants.episodeTitleTextColor
         label.font = Constants.episodeTitleFontStyle
         return label
@@ -45,7 +44,6 @@ class EpisodeCollectionCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.text = "Episode: 2, Season: 1"
         label.textColor = Constants.episodeDescriptionTextColor
         label.font = Constants.episodeDescriptionFontStyle
         return label
@@ -55,7 +53,6 @@ class EpisodeCollectionCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
-        label.text = "December 9, 2013"
         label.textColor = Constants.episodeCreationTextColor
         label.font = Constants.episodeDescriptionFontStyle
         return label
@@ -74,6 +71,8 @@ class EpisodeCollectionCell: UICollectionViewCell {
                                                constant: Constants.defaultPadding16).isActive = true
         episodeTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                    constant: Constants.defaultPadding16).isActive = true
+        episodeTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                                   constant: -Constants.defaultPadding16).isActive = true
         episodeTitleLabel.heightAnchor.constraint(equalToConstant: Constants.episodeTitleLabelHeight).isActive = true
 
         episodeDescriptionLabel.topAnchor.constraint(equalTo: episodeTitleLabel.bottomAnchor,
