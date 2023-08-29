@@ -29,10 +29,11 @@ private enum Constants {
 }
 
 class CharacterOriginCollectionCell: UICollectionViewCell {
-    var data: CharacterInfoModel? {
+    var data: Location? {
         didSet {
             guard let data = data else { return }
-            planetNameLabel.text = data.origin.name
+            planetNameLabel.text = data.name
+            planetTypeLabel.text = data.type
         }
     }
 
