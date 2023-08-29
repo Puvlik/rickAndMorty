@@ -18,6 +18,7 @@ private enum Constants {
     static var cellCornerRadius: CGFloat { 16 }
     static var defaultPadding12: CGFloat { 12 }
     static var defaultPadding16: CGFloat { 16 }
+    static var characterPlaceholderViewWidth: CGFloat { 60 }
 }
 
 class CharacterInfoCollectionViewCell: UICollectionViewCell {
@@ -70,6 +71,8 @@ class CharacterInfoCollectionViewCell: UICollectionViewCell {
         characterInfoPlaceholdersStackView.bottomAnchor.constraint(
             equalTo: bottomAnchor,
             constant: -Constants.defaultPadding12).isActive = true
+        characterInfoPlaceholdersStackView.widthAnchor.constraint(
+            equalToConstant: Constants.characterPlaceholderViewWidth).isActive = true
 
         characterInformationLabelsStackView.topAnchor.constraint(
             equalTo: topAnchor,
