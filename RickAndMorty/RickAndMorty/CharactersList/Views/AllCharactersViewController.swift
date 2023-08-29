@@ -53,7 +53,9 @@ class AllCharactersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async { [weak self] in
-            self?.viewModel.loadAllCharactersInfo()
+            self?.viewModel.loadAllCharactersInfo(completion: {
+                self?.charactersCollectionView.reloadData()
+            })
         }
         view.backgroundColor = UIColor().backgroundColor
 
