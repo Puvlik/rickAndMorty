@@ -22,6 +22,15 @@ private enum Constants {
 }
 
 class EpisodeCollectionCell: UICollectionViewCell {
+    var data: CharacterEpisodesModel? {
+        didSet {
+            guard let data = data else { return }
+            episodeTitleLabel.text = data.name
+            episodeDescriptionLabel.text = data.episode.convertToEpisode()
+            episodeCreationDateLabel.text = data.airDate
+        }
+    }
+
     private lazy var episodeTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
