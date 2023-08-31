@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import Kingfisher
 import UIKit
 
+// MARK: - Constants
 private enum Constants {
     static var cellCornerRadius: CGFloat { 16 }
     static var characterImageCornerRadius: CGFloat { 10 }
@@ -21,7 +23,10 @@ private enum Constants {
     static var characterNameTextFont: UIFont { .boldSystemFont(ofSize: 19) }
 }
 
-class CharacterCollectionCell: UICollectionViewCell {
+// MARK: - CharacterCollectionCell
+final class CharacterCollectionCell: UICollectionViewCell {
+
+    // MARK: - Public properties
     var data: CharacterInfoModel? {
         didSet {
             guard let data = data else { return }
@@ -29,7 +34,8 @@ class CharacterCollectionCell: UICollectionViewCell {
         }
     }
 
-    lazy var characterImageView: UIImageView = {
+    // MARK: - Private properties
+    private lazy var characterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
@@ -48,10 +54,25 @@ class CharacterCollectionCell: UICollectionViewCell {
         return label
     }()
 
+    // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: .zero)
         backgroundColor = UIColor().cellBackgroundColor
         layer.cornerRadius = Constants.cellCornerRadius
+        setupSubviews()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Public methods
+    func setupCharacterImageViewWithImage(_ image: KF.ImageResource) {
+        characterImageView.kf.setImage(with: image)
+    }
+
+    // MARK: - Private methods
+    private func setupSubviews() {
         addSubview(characterImageView)
         addSubview(characterNameLabel)
 
@@ -71,9 +92,5 @@ class CharacterCollectionCell: UICollectionViewCell {
                                                     constant: Constants.defaultSidePadding10).isActive = true
         characterImageView.bottomAnchor.constraint(equalTo: characterNameLabel.topAnchor,
                                                    constant: -Constants.defaultSidePadding10).isActive = true
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

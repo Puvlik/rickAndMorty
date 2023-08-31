@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - Constants
 private enum Constants {
     static var cellCornerRadius: CGFloat { 16 }
     static var backgroundViewCornerRadius: CGFloat { 10 }
@@ -27,7 +28,11 @@ private enum Constants {
     static var planetTypeFontStyle: UIFont { .systemFont(ofSize: 13, weight: .medium) }
 }
 
-class CharacterOriginCollectionCell: UICollectionViewCell {
+// MARK: - CharacterOriginCollectionCell
+/// Cell for presenting character place of birth
+final class CharacterOriginCollectionCell: UICollectionViewCell {
+
+    // MARK: - Public properties
     var data: Location? {
         didSet {
             guard let data = data else { return }
@@ -36,6 +41,7 @@ class CharacterOriginCollectionCell: UICollectionViewCell {
         }
     }
 
+    // MARK: - Private properties
     private lazy var planetImageBackgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -69,11 +75,21 @@ class CharacterOriginCollectionCell: UICollectionViewCell {
         return label
     }()
 
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: .zero)
         backgroundColor = UIColor().cellBackgroundColor
         layer.cornerRadius = Constants.cellCornerRadius
 
+        setupSubviews()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Private methods
+    private func setupSubviews() {
         addSubview(planetImageBackgroundView)
         addSubview(planetNameLabel)
         addSubview(planetTypeLabel)
@@ -108,9 +124,5 @@ class CharacterOriginCollectionCell: UICollectionViewCell {
         planetTypeLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
                                                   constant: -Constants.defaultPadding8).isActive = true
         planetTypeLabel.heightAnchor.constraint(equalToConstant: Constants.defaultSizeValue22).isActive = true
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

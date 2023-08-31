@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - Constants
 private enum Constants {
     static var emptyString: String { "" }
     static var characterNoneTypeString: String { "None" }
@@ -21,7 +22,11 @@ private enum Constants {
     static var characterPlaceholderViewWidth: CGFloat { 60 }
 }
 
-class CharacterInfoCollectionViewCell: UICollectionViewCell {
+// MARK: - CharacterInfoCollectionViewCell
+/// Cell for presenting character personal information
+final class CharacterInfoCollectionViewCell: UICollectionViewCell {
+
+    // MARK: - Public properties
     var data: CharacterFullInfoModel? {
         didSet {
             guard let data = data else { return }
@@ -42,6 +47,7 @@ class CharacterInfoCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    // MARK: - Private properties
     private lazy var characterInfoPlaceholdersStackView: ThreeLabelsStackView = {
         let view = ThreeLabelsStackView()
         view.alignment = .leading
@@ -54,11 +60,21 @@ class CharacterInfoCollectionViewCell: UICollectionViewCell {
         return view
     }()
 
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: .zero)
         backgroundColor = UIColor().cellBackgroundColor
         layer.cornerRadius = Constants.cellCornerRadius
 
+        setupSubviews()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Private methods
+    private func setupSubviews() {
         addSubview(characterInfoPlaceholdersStackView)
         addSubview(characterInformationLabelsStackView)
 
@@ -85,9 +101,5 @@ class CharacterInfoCollectionViewCell: UICollectionViewCell {
             constant: -Constants.defaultPadding12).isActive = true
         characterInformationLabelsStackView.leadingAnchor.constraint(
             equalTo: characterInfoPlaceholdersStackView.trailingAnchor).isActive = true
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

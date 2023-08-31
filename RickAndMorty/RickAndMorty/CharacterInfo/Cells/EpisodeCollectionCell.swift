@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - Constants
 private enum Constants {
     static var cellCornerRadius: CGFloat { 16 }
     static var defaultPadding16: CGFloat { 16 }
@@ -21,7 +22,11 @@ private enum Constants {
     static var episodeDescriptionFontStyle: UIFont { .systemFont(ofSize: 13, weight: .medium) }
 }
 
-class EpisodeCollectionCell: UICollectionViewCell {
+// MARK: - EpisodeCollectionCell
+/// Cell for presenting episode where character appeared
+final class EpisodeCollectionCell: UICollectionViewCell {
+
+    // MARK: - Public properties
     var data: CharacterEpisodesModel? {
         didSet {
             guard let data = data else { return }
@@ -31,6 +36,7 @@ class EpisodeCollectionCell: UICollectionViewCell {
         }
     }
 
+    // MARK: - Private properties
     private lazy var episodeTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -58,11 +64,21 @@ class EpisodeCollectionCell: UICollectionViewCell {
         return label
     }()
 
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: .zero)
         backgroundColor = UIColor().cellBackgroundColor
         layer.cornerRadius = Constants.cellCornerRadius
 
+        setupSubviews()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Private methods
+    private func setupSubviews() {
         addSubview(episodeTitleLabel)
         addSubview(episodeDescriptionLabel)
         addSubview(episodeCreationDateLabel)
@@ -86,9 +102,5 @@ class EpisodeCollectionCell: UICollectionViewCell {
             equalTo: episodeDescriptionLabel.centerYAnchor).isActive = true
         episodeCreationDateLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
                                                            constant: -Constants.defaultPadding16).isActive = true
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

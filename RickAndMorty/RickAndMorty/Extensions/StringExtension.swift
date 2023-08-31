@@ -7,11 +7,13 @@
 
 import Foundation
 
+// MARK: - String
 extension String {
     func index<S: StringProtocol>(of string: S, options: String.CompareOptions = []) -> Index? {
         range(of: string, options: options)?.lowerBound
     }
 
+    /// Convert bad episode string to required format S01E01 ---> Episode: 1, Season: 1
     func convertToEpisode() -> String {
         var seasonString = ""
         var episodeString = ""

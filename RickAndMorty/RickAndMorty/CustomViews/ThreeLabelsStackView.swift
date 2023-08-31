@@ -8,11 +8,13 @@
 import Foundation
 import UIKit
 
+// MARK: - ThreeLabelsAligment
 enum ThreeLabelsAligment {
     case left
     case right
 }
 
+// MARK: - Constants
 private enum Constants {
     static var labelTextNumberOfLines: Int { 0 }
     static var viewItemsSpacing: CGFloat { 5 }
@@ -21,7 +23,11 @@ private enum Constants {
     static var infoDefaultTextColor: UIColor { .white }
 }
 
-class ThreeLabelsStackView: UIStackView {
+// MARK: - Constants
+/// Custom view for presenting 3 labels info
+final class ThreeLabelsStackView: UIStackView {
+
+    // MARK: - Private properties
     private var speciesPlaceholderLabel: UILabel = {
         let text = UILabel()
         text.translatesAutoresizingMaskIntoConstraints = false
@@ -46,6 +52,7 @@ class ThreeLabelsStackView: UIStackView {
         return text
     }()
 
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
@@ -62,6 +69,7 @@ class ThreeLabelsStackView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Public methods
     func setupView(alignment: ThreeLabelsAligment,
                    topLabelText: String,
                    middleLabelText: String,

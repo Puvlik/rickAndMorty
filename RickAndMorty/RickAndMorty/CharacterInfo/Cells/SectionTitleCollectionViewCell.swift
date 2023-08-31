@@ -8,15 +8,23 @@
 import Foundation
 import UIKit
 
+// MARK: - Constants
 private enum Constants {
     static var sectionTitleViewHeight: CGFloat { 22 }
     static var sectionTitleViewLeftPadding: CGFloat { 8 }
+
     static var sectionTitlePlaceholder: String { "Unknown section" }
+
     static var sectionTitleFontStyle: UIFont { .systemFont(ofSize: 17, weight: .semibold) }
+
     static var sectionTitleTextColor: UIColor { .white }
 }
 
-class SectionTitleCollectionViewCell: UICollectionViewCell {
+// MARK: - SectionTitleCollectionViewCell
+/// Cell for imitating section header view
+final class SectionTitleCollectionViewCell: UICollectionViewCell {
+
+    /// Section titles
     enum SectionTitleTextEnum: String {
         case unknown = "Unknown"
         case info = "Info"
@@ -24,12 +32,14 @@ class SectionTitleCollectionViewCell: UICollectionViewCell {
         case episodes = "Episodes"
     }
 
+    // MARK: - Public properties
     var title: SectionTitleTextEnum = .unknown {
         didSet {
             sectionTitleLabel.text = title.rawValue
         }
     }
 
+    // MARK: - Private properties
     private lazy var sectionTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -39,9 +49,20 @@ class SectionTitleCollectionViewCell: UICollectionViewCell {
         return label
     }()
 
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: .zero)
         backgroundColor = .clear
+
+        setupSubviews()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Private methods
+    private func setupSubviews() {
         addSubview(sectionTitleLabel)
 
         sectionTitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
@@ -49,9 +70,5 @@ class SectionTitleCollectionViewCell: UICollectionViewCell {
                                                    constant: Constants.sectionTitleViewLeftPadding).isActive = true
         sectionTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         sectionTitleLabel.heightAnchor.constraint(equalToConstant: Constants.sectionTitleViewHeight).isActive = true
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

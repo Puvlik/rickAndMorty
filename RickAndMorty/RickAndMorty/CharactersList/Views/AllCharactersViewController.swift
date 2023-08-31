@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  AllCharactersViewController.swift
 //  RickAndMorty
 //
 //  Created by Паша Клопот on 21.08.23.
@@ -9,6 +9,7 @@ import Foundation
 import Kingfisher
 import UIKit
 
+// MARK: - Constants
 private enum Constants {
     static var emptyCollection: Int { 0 }
 
@@ -24,7 +25,11 @@ private enum Constants {
     static var navigationItemText: String { "Characters" }
 }
 
-class AllCharactersViewController: UIViewController {
+// MARK: - AllCharactersViewController
+/// ViewController with list of all characters
+final class AllCharactersViewController: UIViewController {
+
+    // MARK: - Private properties
     private lazy var charactersCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = Constants.collectionViewItemSpacing
@@ -41,6 +46,7 @@ class AllCharactersViewController: UIViewController {
 
     private let viewModel: CharactersViewModel
 
+    // MARK: - Init
     init(viewModel: CharactersViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -57,14 +63,18 @@ class AllCharactersViewController: UIViewController {
                 self?.charactersCollectionView.reloadData()
             })
         }
-        view.backgroundColor = UIColor().backgroundColor
 
+        setupNavController()
+        setupCollectionView()
+    }
+
+    // MARK: - Private methods
+    private func setupNavController() {
+        view.backgroundColor = UIColor().backgroundColor
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = Constants.navigationItemText
-
-        setupCollectionView()
     }
 
     private func setupCollectionView() {
@@ -82,6 +92,7 @@ class AllCharactersViewController: UIViewController {
     }
 }
 
+// MARK: - UICollectionViewDelegate
 extension AllCharactersViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let selectedCharacter = viewModel.charactersListArray?.results?[indexPath.row] else { return }
@@ -91,6 +102,7 @@ extension AllCharactersViewController: UICollectionViewDelegate {
     }
 }
 
+// MARK: - UICollectionViewDataSource
 extension AllCharactersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.charactersListArray?.results?.count ?? Constants.emptyCollection
@@ -107,7 +119,7 @@ extension AllCharactersViewController: UICollectionViewDataSource {
             cell.data = currentCharacter
             if let imageURL = URL(string: currentCharacter.image) {
                 let characterImage = KF.ImageResource(downloadURL: imageURL)
-                cell.characterImageView.kf.setImage(with: characterImage)
+                cell.setupCharacterImageViewWithImage(characterImage)
             }
         }
         return cell

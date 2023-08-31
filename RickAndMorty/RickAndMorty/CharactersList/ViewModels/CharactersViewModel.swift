@@ -8,10 +8,15 @@
 import Foundation
 import UIKit
 
-class CharactersViewModel {
+// MARK: - CharactersViewModel
+/// Service to work with all characters request
+final class CharactersViewModel {
+    /// All characters URL
     private let urlString = "https://rickandmortyapi.com/api/character"
+    /// List of all fetched characters
     var charactersListArray: AllCharactersInfoModel?
 
+    /// Method of fetching all characters
     func loadAllCharactersInfo(completion: @escaping () -> ()) {
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
