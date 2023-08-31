@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import Kingfisher
 import UIKit
 
+// MARK: - Constants
 private enum Constants {
     static var labelLinesNumber: Int { 0 }
 
@@ -26,7 +28,11 @@ private enum Constants {
     static var characterLifeStatusFontStyle: UIFont { .systemFont(ofSize: 16, weight: .medium) }
 }
 
-class CharacterMainInformationCollectionViewCell: UICollectionViewCell {
+// MARK: - CharacterMainInformationCollectionViewCell
+/// Cell for presenting character main detailed information
+final class CharacterMainInformationCollectionViewCell: UICollectionViewCell {
+
+    // MARK: - Public properties
     var data: CharacterFullInfoModel? {
         didSet {
             guard let data = data else { return }
@@ -44,6 +50,7 @@ class CharacterMainInformationCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    // MARK: - Private properties
     private lazy var informationStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +59,7 @@ class CharacterMainInformationCollectionViewCell: UICollectionViewCell {
         return stack
     }()
 
-    lazy var characterImageView: UIImageView = {
+    private lazy var characterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = Constants.characterImageViewCornerRadius
@@ -80,8 +87,23 @@ class CharacterMainInformationCollectionViewCell: UICollectionViewCell {
         return label
     }()
 
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        setupSubviews()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Public methods
+    func setupCharacterImageViewWithImage(_ image: KF.ImageResource) {
+        characterImageView.kf.setImage(with: image)
+    }
+
+    // MARK: - Private methods
+    private func setupSubviews() {
         informationStackView.addArrangedSubview(characterNameLabel)
         informationStackView.addArrangedSubview(characterLifeStatusLabel)
         addSubview(informationStackView)
@@ -98,9 +120,5 @@ class CharacterMainInformationCollectionViewCell: UICollectionViewCell {
         informationStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         informationStackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         informationStackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

@@ -7,15 +7,26 @@
 
 import Foundation
 
+// MARK: - CharacterFullInfoModel
+/// Model to work with full character information
 struct CharacterFullInfoModel: Codable {
+    /// Character id
     var id: Int
+    /// Character name
     var name: String
+    /// Character live status (dead / alive)
     var aliveStatus: String
+    /// What type character is
     var creatureType: String
+    /// idk wtf
     let type: String
+    /// Character gender
     var gender: String
+    /// Place of character birth
     var origin: Location
+    /// Character image
     var image: String
+    /// Episodes, where character appeared
     var episode: [CharacterEpisodesModel]
 
     private enum CodingKeys: String, CodingKey {

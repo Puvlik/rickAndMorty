@@ -8,7 +8,9 @@
 import Foundation
 import UIKit
 
+// MARK: - UIColor
 extension UIColor {
+    /// Convert hex to UIColor
     func hexStringToUIColor(hex: String) -> UIColor {
         var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 
@@ -31,10 +33,12 @@ extension UIColor {
         )
     }
 
+    /// Min background color
     var backgroundColor: UIColor {
         return hexStringToUIColor(hex: "#040C1E")
     }
 
+    /// Main CollectionView cell color
     var cellBackgroundColor: UIColor {
         return hexStringToUIColor(hex: "#262A38")
     }

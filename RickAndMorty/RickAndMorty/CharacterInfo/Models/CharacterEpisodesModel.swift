@@ -7,10 +7,16 @@
 
 import Foundation
 
+// MARK: - CharacterEpisodesModel
+/// Model for fetching all episodes, where character appeared
 struct CharacterEpisodesModel: Codable {
+    /// Episode id
     let id: Int
+    /// Episode title
     let name: String
+    /// Episode date of creation
     let airDate: String
+    /// Episode number in season
     let episode: String
 
     private enum CodingKeys: String, CodingKey {

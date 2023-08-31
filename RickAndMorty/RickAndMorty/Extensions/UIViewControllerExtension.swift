@@ -8,7 +8,9 @@
 import Foundation
 import UIKit
 
+// MARK: - UIViewController
 extension UIViewController {
+    /// Calculate navController height
     var topBarHeight: CGFloat {
         var top = self.navigationController?.navigationBar.frame.height ?? 0.0
         if #available(iOS 13.0, *) {

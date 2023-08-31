@@ -9,6 +9,7 @@ import Foundation
 import Kingfisher
 import UIKit
 
+// MARK: - Constants
 private enum Constants {
     static var collectionViewNumberOfSections: Int { 1 }
     static var defaultNumberOfCells: Int { 6 }
@@ -25,6 +26,7 @@ private enum Constants {
     static var defaultPadding8: CGFloat { 8 }
 
     static var collectionViewDefaultColor: UIColor { .clear }
+
     static var collectionViewMainCellIdentifier: String { "CharacterMainInformationCell" }
     static var collectionViewInfoCellIdentifier: String { "CharacterInfoCollectionViewCell" }
     static var collectionViewOriginCellIdentifier: String { "CharacterOriginCollectionCell" }
@@ -32,7 +34,11 @@ private enum Constants {
     static var collectionViewSectionTitleCellIdentifier: String { "SectionTitleCollectionViewCell" }
 }
 
-class CharacterDetailsViewController: UIViewController {
+// MARK: - CharacterDetailsViewController
+/// ViewController for presenting character detailed information
+final class CharacterDetailsViewController: UIViewController {
+
+    // MARK: - Private properties
     private lazy var characterDetailInfoCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = Constants.collectionViewItemSpacing
@@ -44,9 +50,12 @@ class CharacterDetailsViewController: UIViewController {
     }()
 
     private let viewModel: DetailCharacterInfoViewModel
+    /// Selected character
     private let character: CharacterInfoModel
+    /// Full model of selected character
     private var fullCharacterInfoModel: CharacterFullInfoModel?
 
+    // MARK: - Init
     init(character: CharacterInfoModel, viewModel: DetailCharacterInfoViewModel) {
         self.character = character
         self.viewModel = viewModel
@@ -59,11 +68,13 @@ class CharacterDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchRequiredData()
         view.backgroundColor = UIColor().backgroundColor
+        fetchRequiredData()
         setupCollectionView()
     }
 
+    // MARK: - Private methods
+    /// Fetch episodes and origin for selected character
     private func fetchRequiredData() {
         let group = DispatchGroup()
 
@@ -118,6 +129,7 @@ class CharacterDetailsViewController: UIViewController {
         characterDetailInfoCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 
+    /// Create and setup sectionCell with title
     private func setupSectionCollectionViewCell(indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = characterDetailInfoCollectionView.dequeueReusableCell(
             withReuseIdentifier: Constants.collectionViewSectionTitleCellIdentifier,
@@ -135,8 +147,7 @@ class CharacterDetailsViewController: UIViewController {
     }
 }
 
-extension CharacterDetailsViewController: UICollectionViewDelegate {}
-
+// MARK: - UICollectionViewDataSource
 extension CharacterDetailsViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return Constants.collectionViewNumberOfSections
@@ -161,7 +172,7 @@ extension CharacterDetailsViewController: UICollectionViewDataSource {
             cell.data = fullCharacterInfoModel
             if let imageURL = URL(string: fullCharacterInfoModel?.image ?? "") {
                 let characterImage = KF.ImageResource(downloadURL: imageURL)
-                cell.characterImageView.kf.setImage(with: characterImage)
+                cell.setupCharacterImageViewWithImage(characterImage)
             }
             return cell
         case 1, 3, 5:
@@ -191,6 +202,7 @@ extension CharacterDetailsViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension CharacterDetailsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,

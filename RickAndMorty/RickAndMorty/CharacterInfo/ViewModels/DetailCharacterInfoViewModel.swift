@@ -8,8 +8,12 @@
 import Foundation
 import UIKit
 
-class DetailCharacterInfoViewModel {
+// MARK: - DetailCharacterInfoViewModel
+/// Service for fetching required detailed character information
+final class DetailCharacterInfoViewModel {
+    /// Character place of birth
     var characterOriginModel: Location?
+    /// Character episodes 
     var characterEpisodesArray = [CharacterEpisodesModel]()
 
     func parseCharacterOrigin(originString: String, completion: @escaping () -> ()) {
